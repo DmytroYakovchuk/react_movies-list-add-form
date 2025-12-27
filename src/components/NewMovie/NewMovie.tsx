@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
-
-interface Movie {
-  title: string;
-  imgUrl: string;
-  imdbUrl: string;
-  imdbId: string;
-  description: string;
-}
+import { Movie } from '../../types/Movie';
 
 type Props = {
   onAdd: (movie: Movie) => void;
@@ -26,7 +19,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const isValid =
     title.trim() && imdbId.trim() && imdbUrl.trim() && imgUrl.trim();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!isValid) {
       return;
@@ -50,7 +43,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setImdbUrl('');
     setImgUrl('');
 
-    setCount(count => count + 1);
+    setCount(prevCount => prevCount + 1);
   };
 
   return (

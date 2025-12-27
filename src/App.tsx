@@ -3,7 +3,14 @@ import './App.scss';
 import { MoviesList } from './components/MoviesList';
 import { NewMovie } from './components/NewMovie';
 import moviesFromServer from './api/movies.json';
-import { Movie } from './types/Movie';
+
+interface Movie {
+  title: string;
+  imgUrl: string;
+  imdbUrl: string;
+  imdbId: string;
+  description: string;
+}
 
 export const App = () => {
   const [movies, setMovies] = useState(moviesFromServer);
