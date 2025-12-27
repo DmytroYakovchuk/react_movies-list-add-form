@@ -3,11 +3,12 @@ import './App.scss';
 import { MoviesList } from './components/MoviesList';
 import { NewMovie } from './components/NewMovie';
 import moviesFromServer from './api/movies.json';
+import { Movie } from './types/Movie';
 
 export const App = () => {
   const [movies, setMovies] = useState(moviesFromServer);
 
-  const handleAddMovie = (movie) => {
+  const handleAddMovie = (movie: Movie) => {
     setMovies(prev => [...prev, movie]);
   };
 

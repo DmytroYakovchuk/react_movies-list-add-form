@@ -1,6 +1,18 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
 
+interface Movie {
+  title: string;
+  imgUrl: string;
+  imdbUrl: string;
+  imdbId: string;
+  description: string;
+}
+
+type Props = {
+  onAdd: (movie: Movie) => void;
+};
+
 export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   // Increase the count after successful form submission
   // to reset touched status of all the `Field`s
@@ -14,13 +26,13 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const isValid =
     title.trim() && imdbId.trim() && imdbUrl.trim() && imgUrl.trim();
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     if (!isValid) {
       return;
     }
 
-    const movie = {
+    const movie: Movie = {
       title: title.trim(),
       imgUrl: imgUrl.trim(),
       imdbUrl: imdbUrl.trim(),
@@ -38,7 +50,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setImdbUrl('');
     setImgUrl('');
 
-    setCount(c => c + 1);
+    setCount(count => count + 1);
   };
 
   return (
@@ -58,7 +70,6 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         label="Description"
         value={description}
         onChange={setDescription}
-        required
       />
 
       <TextField
